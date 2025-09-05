@@ -22,12 +22,26 @@
         </ul>
 
         <!-- Auth buttons -->
+        <li class="nav item">
+        <a class="btn btn me-2" href="{% url 'view_cart' %}" style="font-size: 1.5rem;">🛒</a>
+            <i class="bi bi-cart3" style="font-size: 1.5rem;"></i>
+          </a>
+        </li>
+        
         <div class="d-flex">
           {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}" class="btn btn-outline-light me-2">Logout</a>
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+          {% csrf_token %}
+              <button type="submit" class="btn btn-outline-light me-2">Logout</button>
+          </form>
+
+
+
           {% else %}
             <a href="{% url 'login' %}" class="btn btn-outline-light me-2">Login</a>
-            <a href="{% url 'signup' %}" class="btn btn-outline-success">Sign Up</a>
+            <!-- Se debe loguear en admin para que funcione la pag -->
+            <!-- Aun no esta implementado el sign up -->
+            <a href="{% url 'signup' %}" class="btn btn-outline-success">Sign Up</a>   
           {% endif %}
         </div>
       </div>
